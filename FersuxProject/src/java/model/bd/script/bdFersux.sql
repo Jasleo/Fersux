@@ -13,12 +13,12 @@ CREATE TABLE usuario(
     nombre VARCHAR(50),
     apellido VARCHAR(50),
     correo VARCHAR(50),
-    generoFK INT,
+    genero BOOLEAN,
     fecha date,
     nombreUsuario VARCHAR(50),
     contrasena VARCHAR (200),
     PRIMARY KEY(id)
-    FOREIGN KEY(generoFK) REFERENCES genero(id)
+   
 );
 
 CREATE TABLE publicacion(
