@@ -19,12 +19,12 @@ public class Data {
         );
 
     }
-    
+
     public Usuario getUsuario(String cooreo) throws SQLException {
         Usuario u = null;
 
         rs = con.ejecutarSelect("SELECT * FROM usuario WHERE correo like '" + cooreo + "'");
-        
+
         if (rs.next()) {
             u = new Usuario();
 
@@ -42,4 +42,28 @@ public class Data {
 
         return u;
     }
+
+    public void createUsuario(Usuario u) throws SQLException {
+
+        con.ejecutar("INSERT INTO usuario "
+                + "VALUES('" + u.getId() + "',"
+                        + "'" + u.getNombre() + "','" + u.getApellido() + "','" + u.getCorreo() + "','" + u.isGenero() + "',"
+                + "'" + u.getFecha() + "','" + u.getNombreUsuario() + "','" + u.getContrasena() + "'");
+    }
+    
+    public void createPublicacion(Publicacion p) throws SQLException {
+
+        con.ejecutar("INSERT INTO publicacion VALUES('"+p.getTexto()+"','"+p.getUsuarioFK()+"')");
+               
+    }
+    
+    public void createSeguimiento(Seguimiento s) throws SQLException {
+
+        con.ejecutar("INSERT INTO seguimiento VALUES('"+s.getUsuarioFK_Seguidor()+"','"+s.getUsuarioFK_Seguido()+"')");
+               
+    }
+    
+    
+   
+    
 }
