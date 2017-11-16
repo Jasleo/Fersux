@@ -2,6 +2,8 @@ package model.bd;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class Data {
 
@@ -20,22 +22,26 @@ public class Data {
 
     }
 
-    public Usuario getUsuario(String cooreo) throws SQLException {
+    public Usuario getUsuario(String cooreo, String contrasena) throws SQLException {
         Usuario u = null;
 
-        rs = con.ejecutarSelect("SELECT * FROM usuario WHERE correo like '" + cooreo + "'");
-
+        rs = con.ejecutarSelect("SELECT * FROM usuario WHERE correo LIKE '" + cooreo + "' AND contrasena LIKE '"+contrasena+"'");
+        
+        System.out.println("GET USUARIO");
+        System.out.println(rs);
+        
         if (rs.next()) {
             u = new Usuario();
 
             u.setId(rs.getInt(1));
             u.setNombre(rs.getString(2));
             u.setApellido(rs.getString(3));
-            u.setCorreo(rs.getString(3));
-            u.setGenero(rs.getBoolean(5));
-            u.setFecha(rs.getTimestamp(6));
-            u.setNombreUsuario(rs.getString(7));
-            u.setContrasena(rs.getString(8));
+            u.setCorreo(rs.getString(3));            
+            u.setNombreUsuario(rs.getString(4));
+            u.setContrasena(rs.getString(5));
+            u.setGenero(rs.getString(6));
+            u.setGenero(rs.getString(7));
+            u.setFecha(rs.getTimestamp(8));
         }
 
         con.close();
@@ -45,10 +51,7 @@ public class Data {
 
     public void createUsuario(Usuario u) throws SQLException {
 
-        con.ejecutar("INSERT INTO usuario "
-                + "VALUES('" + u.getId() + "',"
-                        + "'" + u.getNombre() + "','" + u.getApellido() + "','" + u.getCorreo() + "','" + u.isGenero() + "',"
-                + "'" + u.getFecha() + "','" + u.getNombreUsuario() + "','" + u.getContrasena() + "'");
+        con.ejecutar("INSERT INTO usuario VALUES (null, '"+u.getNombre()+"', '"+u.getApellido()+"', '"+u.getCorreo()+"', '"+u.getNombreUsuario()+"', '"+u.getContrasena()+"', '"+u.getGenero()+"', '"+u.getFecha()+"')");
     }
     
     public void createPublicacion(Publicacion p) throws SQLException {
@@ -61,6 +64,10 @@ public class Data {
 
         con.ejecutar("INSERT INTO seguimiento VALUES('"+s.getUsuarioFK_Seguidor()+"','"+s.getUsuarioFK_Seguido()+"')");
                
+    }
+    
+    public static Timestamp dateToTimeStamp(Date fecha) {
+        return new Timestamp(fecha.getTime());
     }
     
     

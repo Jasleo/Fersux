@@ -26,15 +26,16 @@ public class IniciarSesionServlet extends HttpServlet {
             Data d = new Data();
             
             String correo = request.getParameter("correoIniciar");
+            String contrasena = request.getParameter("contrasniaIniciar");
             
-            Usuario u = d.getUsuario(correo);
+            Usuario u = d.getUsuario(correo, contrasena);
             
             if (u != null) {
                 request.getSession().setAttribute("usuario", u);
                 request.getSession().removeAttribute("error");
                 response.sendRedirect("inicio.jsp");
             }else{
-                request.getSession().setAttribute("error", new Error("E-Mail o Contraseña Inconrrecta"));
+                request.getSession().setAttribute("error", new Error("E-Mail o Contraseña Incorrecta"));
                 response.sendRedirect("index.jsp");
             }
             

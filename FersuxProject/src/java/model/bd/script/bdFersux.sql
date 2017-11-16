@@ -2,23 +2,16 @@ CREATE DATABASE fersux;
 
 USE fersux;
 
-CREATE TABLE genero(
-    id INT AUTO_INCREMENT,
-    descripcion VARCHAR(100),
-    PRIMARY KEY(id)
-);
-
 CREATE TABLE usuario(
     id INT AUTO_INCREMENT,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
     correo VARCHAR(50),
-    genero BOOLEAN,
-    fecha date,
     nombreUsuario VARCHAR(50),
     contrasena VARCHAR (200),
-    PRIMARY KEY(id)
-   
+    genero VARCHAR(1),
+    fecha DATE,
+    PRIMARY KEY(id)  
 );
 
 CREATE TABLE publicacion(
@@ -26,7 +19,7 @@ CREATE TABLE publicacion(
     texto VARCHAR(100),
     usuarioFK INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(usuario) REFERENCES usuario(id)
+    FOREIGN KEY(usuarioFK) REFERENCES usuario(id)
 );
 
 CREATE TABLE seguimiento(
@@ -34,6 +27,27 @@ CREATE TABLE seguimiento(
     usuarioFK_Seguidor INT,
     usuarioFK_Seguido INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(usuarioFK_Seguidor) REFERENCES usuario(id)
+    FOREIGN KEY(usuarioFK_Seguidor) REFERENCES usuario(id),
     FOREIGN KEY(usuarioFK_Seguido) REFERENCES usuario(id)
 );
+
+CREATE TABLE comentario(
+    id INT AUTO_INCREMENT,
+    comentario VARCHAR(500),
+    usuario_FK_Comenta INT,
+    publicacion_FK INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(usuario_FK_Comenta) REFERENCES usuario(id),
+    FOREIGN KEY(publicacion_FK) REFERENCES publicacion(id)
+);
+
+-- DROP DATABASE fersux;
+
+SELECT * FROM usuario;
+SELECT * FROM publicacion;
+SELECT * FROM seguimiento;
+SELECT * FROM comentario;
+
+SELECT * FROM usuario WHERE correo LIKE 'diegosuperalbo@yahoo.com' AND contrasena LIKE 'principe98';
+
+SELECT * FROM usuario WHERE correo LIKE 'diegosuperalbo@yahoo.com' AND contrasena LIKE 12

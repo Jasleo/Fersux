@@ -8,7 +8,7 @@
 
     <form action="iniciarSesion.do" method="post">
         <input type="email" name="correoIniciar" required="required">                                                  
-        <input type="text" name="contrasniaIniciar" required="required">   
+        <input type="password" name="contrasniaIniciar" required="required">   
         <%
             Error e = (Error) request.getSession().getAttribute("error");
             if (e != null) {
@@ -25,9 +25,10 @@
         Apellido : <input type="text" name="txtApellido" required="required">
         E-Mail : <input type="email" name="txtEmail" required="required">
         Fecha Nacimiento : <input type="date" name="txtFechaNacimiento" required="required">
-        Mujer : <input type="radio" name="opSexo" required="required" value="femenino">
-        Hombre : <input type="radio" name="opSexo" required="required" value="masculino">
-        Contraseña : <input type="text" name="txtContraseña" required="required" min="6">
+        Mujer : <input type="radio" name="opSexo" required="required" value="f">
+        Hombre : <input type="radio" name="opSexo" required="required" value="m">
+        Nombre Usuario : <input type="text" name="txtNombreUsuario" required="required">
+        Contraseña : <input type="password" name="txtContrasena" required="required" minlength="8">
 
         <input type="submit" value="Crear Cuenta">
     </form>

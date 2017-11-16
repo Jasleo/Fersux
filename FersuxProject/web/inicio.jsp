@@ -6,15 +6,16 @@
 
 <%@page import="model.bd.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="validar.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Fersux</title>
     </head>
     <body>
         <%  
-            Usuario u = new Usuario();
+            if(u != null)
             out.println("<h1>" + u.getNombre() + "</h1>");
         %>
     </body>
