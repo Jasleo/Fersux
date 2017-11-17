@@ -24,10 +24,10 @@ CREATE TABLE publicacion(
 
 CREATE TABLE seguimiento(
     id INT AUTO_INCREMENT,
-    usuarioFK_Seguidor INT,
+    usuarioFK_Actual INT,
     usuarioFK_Seguido INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(usuarioFK_Seguidor) REFERENCES usuario(id),
+    FOREIGN KEY(usuarioFK_Actual) REFERENCES usuario(id),
     FOREIGN KEY(usuarioFK_Seguido) REFERENCES usuario(id)
 );
 
@@ -48,6 +48,4 @@ SELECT * FROM publicacion;
 SELECT * FROM seguimiento;
 SELECT * FROM comentario;
 
-SELECT * FROM usuario WHERE correo LIKE 'diegosuperalbo@yahoo.com' AND contrasena LIKE 'principe98';
-
-SELECT * FROM usuario WHERE correo LIKE 'diegosuperalbo@yahoo.com' AND contrasena LIKE 12
+SELECT * FROM usuario WHERE nombre LIKE '%hila%' OR apellido LIKE '%hila%' AND id NOT LIKE '1'

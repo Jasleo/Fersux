@@ -14,9 +14,38 @@
         <title>Fersux</title>
     </head>
     <body>
-        <%  
-            if(u != null)
-            out.println("<h1>" + u.getNombre() + "</h1>");
+        <%                  
+            int idActual = 0;
+            if (u != null) {
+                out.println("<h1>" + u.getNombre() + "</h1>");
+                idActual = u.getId();
+            }
         %>
-    </body>
+
+        <!Div en el cual se mostrara la foto de perfil, el nombre, la cantidad de publicaciones 
+        cantidad de seguidores y cant de seguidos>
+    <div>
+        <img>
+        <input type="text" value="<%= u.getNombre()%>" readonly="readonly">
+    </div>
+
+    <!Barra para buscar usuarios>
+    <div>
+        <form action="buscarUsuario.jsp" method="POST">
+            <input type="search" name="txtBuscarUsuarios" placeholder="Buscar Amigos">
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
+
+    <!Barra para buscar usuarios>
+    <div>
+        <form action="crearPublicacion.do" method="POST">
+            <textarea name="txtPublicacion"></textarea>
+            <input type="hidden" value="<%= idActual%>" name="idActual">
+            
+            <input type="submit" value="Publicar">
+        </form>
+    </div>
+
+</body>
 </html>
