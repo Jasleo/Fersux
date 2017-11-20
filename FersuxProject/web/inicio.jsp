@@ -4,6 +4,7 @@
     Author     : dhenriquez
 --%>
 
+<%@page import="model.bd.Comentario"%>
 <%@page import="model.bd.Data"%>
 <%@page import="model.bd.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -33,14 +34,14 @@
         <%
             int cantPublicaciones = new Data().getCantPublicaciones(u.getId());
         %>
-        <input type="text" value="<%= cantPublicaciones %>" readonly="readonly">
+        <input type="text" value="<%= cantPublicaciones%>" readonly="readonly">
         Seguidores :
-         <%
+        <%
             int cantSeguidores = new Data().getCantSeguidores(u.getId());
         %>
         <input type="text" value="<%= cantSeguidores%>" readonly="readonly">
         Seguidos :
-         <%
+        <%
             int cantSeguidos = new Data().getCantSeguidos(u.getId());
         %>
         <input type="text" value="<%= cantSeguidos%>" readonly="readonly">
@@ -62,6 +63,31 @@
 
             <input type="submit" value="Publicar">
         </form>
+    </div>
+
+
+    <div>
+        <table class="table">
+            <form action ="publicar.do" method="POST">
+                <tr>
+                    <th><textarea rows="4" cols="50" name="txtPost" required></textarea>
+                        <input type="hidden" value="<%=u.getId()%>" name="idUsuario">
+                        <input type="submit" value="Publicar">
+                    </th>
+                </tr>
+            </form>
+            <%
+                Data d = new Data();
+                for (Comentario p : d.getComentarios(u.getId())) {
+                    out.print("<tr>");
+                    out.print("<td>");
+                    out.print(p.getComentario());
+                    out.print("<div class=''>Fecha Publicación: " + p.getFechaComentario()+ "</div>");
+                    out.print("</td>");
+                    out.print("</tr>");
+                }
+            %>
+        </table>
     </div>
 
 </body>

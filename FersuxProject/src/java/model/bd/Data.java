@@ -19,7 +19,7 @@ public class Data {
                 "localhost",
                 "fersux",//nombre BD
                 "root",
-                ""//Password
+                "12345"//Password
         );
 
     }
@@ -161,6 +161,25 @@ public class Data {
         query = "UPDATE usuario SET nombre = '" + u.getNombre() + "', apellido = '" + u.getApellido() + "', correo = '" + u.getCorreo() + "', contrasena = '" + u.getContrasena() + "', fecha = '" + u.getFecha() + "'";
 
         con.ejecutar(query);
+    }
+
+    public List<Comentario> getComentarios(int id) throws SQLException {
+        List<Comentario> lista = new ArrayList<>();
+        query = "SELECT * FROM comentario WHERE usuario_FK_Comenta = " + id + " order by fecha desc";
+
+        rs = con.ejecutarSelect(query);
+
+        Comentario c = new Comentario();
+
+        while (rs.next()) {
+            c.setId(rs.getInt(1));
+            c.setComentario(rs.getString(2));
+            c.setFechaComentario(rs.getTimestamp(3));
+            c.setUsuario_FK_Comenta(rs.getInt(4));
+            c.setPublicacion_FK(rs.getInt(5));
+        }
+        con.close();
+        return lista;
     }
 
 }
