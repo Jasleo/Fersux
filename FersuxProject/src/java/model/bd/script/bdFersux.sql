@@ -17,6 +17,7 @@ CREATE TABLE usuario(
 CREATE TABLE publicacion(
     id INT AUTO_INCREMENT,
     texto VARCHAR(100),
+    fecha DATETIME,
     usuarioFK INT,
     PRIMARY KEY(id),
     FOREIGN KEY(usuarioFK) REFERENCES usuario(id)

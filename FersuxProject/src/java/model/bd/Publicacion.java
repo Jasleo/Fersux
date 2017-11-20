@@ -5,6 +5,15 @@ public class Publicacion {
     private int id;
     private String texto;
     private int usuarioFK;
+    private String fecha;
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 
     public int getId() {
         return id;
