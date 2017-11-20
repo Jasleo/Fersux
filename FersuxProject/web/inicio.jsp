@@ -68,9 +68,9 @@
 
     <div>
         <table class="table">
-            <form action ="crearPublicacion.do"" method="POST">
+            <form action ="crearPublicacion.do" method="POST">
                 <tr>
-                    <th><textarea rows="4" cols="50" name="txtPost" required></textarea>
+                    <th><textarea rows="4" cols="50" name="txtPublicacion" required></textarea>
                         <input type="hidden" value="<%=u.getId()%>" name="idUsuario">
                         <input type="submit" value="Publicar">
                     </th>
