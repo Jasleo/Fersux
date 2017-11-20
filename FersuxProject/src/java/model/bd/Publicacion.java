@@ -1,19 +1,12 @@
 package model.bd;
+import java.sql.Timestamp;
 
 public class Publicacion {
     
     private int id;
     private String texto;
     private int usuarioFK;
-    private String fecha;
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
+    private Timestamp fechaPublicacion;
 
     public int getId() {
         return id;
@@ -38,6 +31,12 @@ public class Publicacion {
     public void setUsuarioFK(int usuarioFK) {
         this.usuarioFK = usuarioFK;
     }
-    
-    
+
+    public Timestamp getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(Timestamp fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
+    }
 }

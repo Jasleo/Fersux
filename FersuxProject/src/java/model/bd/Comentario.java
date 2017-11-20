@@ -1,19 +1,15 @@
 package model.bd;
 
+import java.sql.Timestamp;
+
 public class Comentario {
     private int id;
     private String comentario;
+    private Timestamp fechaComentario;
     private int usuario_FK_Comenta;
     private int  publicacion_FK;
 
     public Comentario() {
-    }
-
-    public Comentario(int id, String comentario, int usuario_FK_Comenta, int publicacion_FK) {
-        this.id = id;
-        this.comentario = comentario;
-        this.usuario_FK_Comenta = usuario_FK_Comenta;
-        this.publicacion_FK = publicacion_FK;
     }
 
     public int getId() {
@@ -32,6 +28,14 @@ public class Comentario {
         this.comentario = comentario;
     }
 
+    public Timestamp getFechaComentario() {
+        return fechaComentario;
+    }
+
+    public void setFechaComentario(Timestamp fechaComentario) {
+        this.fechaComentario = fechaComentario;
+    }
+
     public int getUsuario_FK_Comenta() {
         return usuario_FK_Comenta;
     }
@@ -47,6 +51,7 @@ public class Comentario {
     public void setPublicacion_FK(int publicacion_FK) {
         this.publicacion_FK = publicacion_FK;
     }
+    
     
     
 }

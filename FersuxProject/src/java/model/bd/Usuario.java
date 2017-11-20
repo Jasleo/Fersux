@@ -11,12 +11,12 @@ public class Usuario {
     private String nombreUsuario;
     private String contrasena;
     private String genero;
-    private Timestamp fecha;
+    private Timestamp fechaNacimiento;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String apellido, String correo, String nombreUsuario, String contrasena, String genero, Timestamp fecha) {
+    public Usuario(int id, String nombre, String apellido, String correo, String nombreUsuario, String contrasena, String genero, Timestamp fechaNacimiento) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -24,7 +24,7 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.genero = genero;
-        this.fecha = fecha;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public int getId() {
@@ -84,11 +84,11 @@ public class Usuario {
     }
 
     public Timestamp getFecha() {
-        return fecha;
+        return fechaNacimiento;
     }
 
-    public void setFecha(Timestamp fecha) {
-        this.fecha = fecha;
+    public void setFecha(Timestamp fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
     
     

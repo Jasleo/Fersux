@@ -30,9 +30,6 @@ public class Data {
 
         rs = con.ejecutarSelect("SELECT * FROM usuario WHERE correo LIKE '" + cooreo + "' AND contrasena LIKE '" + contrasena + "'");
 
-        System.out.println("GET USUARIO");
-        System.out.println(rs);
-
         if (rs.next()) {
             u = new Usuario();
 
@@ -57,7 +54,7 @@ public class Data {
     }
 
     public void createPublicacion(Publicacion p) throws SQLException {
-        con.ejecutar("INSERT INTO publicacion VALUES(null, '" + p.getTexto() + "', '" + p.getUsuarioFK() + "')");
+        con.ejecutar("INSERT INTO publicacion VALUES(null, '" + p.getTexto() + "', 'now()' , '" + p.getUsuarioFK() + "')");
 
     }
 
@@ -68,7 +65,7 @@ public class Data {
 
     // id, comentario, usuario que comenta, publicacion que comenta 
     public void createComentario(Comentario c) throws SQLException {
-        con.ejecutar("INSERT INTO comentario VALUES(null, '" + c.getComentario() + "','" + c.getUsuario_FK_Comenta() + "', '" + c.getPublicacion_FK() + "')");
+        con.ejecutar("INSERT INTO comentario VALUES(null, '" + c.getComentario() + "', 'now()' ,'" + c.getUsuario_FK_Comenta() + "', '" + c.getPublicacion_FK() + "')");
     }
 
     public static Timestamp dateToTimeStamp(Date fecha) {

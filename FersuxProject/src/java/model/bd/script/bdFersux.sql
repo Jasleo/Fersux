@@ -10,14 +10,14 @@ CREATE TABLE usuario(
     nombreUsuario VARCHAR(50),
     contrasena VARCHAR (200),
     genero VARCHAR(1),
-    fecha DATE,
+    fechaNacimiento DATE,
     PRIMARY KEY(id)  
 );
 
 CREATE TABLE publicacion(
     id INT AUTO_INCREMENT,
     texto VARCHAR(100),
-    fecha DATETIME,
+    fechaPublicacion DATETIME,
     usuarioFK INT,
     PRIMARY KEY(id),
     FOREIGN KEY(usuarioFK) REFERENCES usuario(id)
@@ -35,6 +35,7 @@ CREATE TABLE seguimiento(
 CREATE TABLE comentario(
     id INT AUTO_INCREMENT,
     comentario VARCHAR(500),
+    fechaComentario DATETIME,
     usuario_FK_Comenta INT,
     publicacion_FK INT,
     PRIMARY KEY(id),

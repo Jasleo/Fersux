@@ -4,6 +4,7 @@
     Author     : dhenriquez
 --%>
 
+<%@page import="model.bd.Data"%>
 <%@page import="model.bd.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="validar.jsp"%>
@@ -14,8 +15,7 @@
         <title>Fersux</title>
     </head>
     <body>
-        <%                  
-            int idActual = 0;
+        <%            int idActual = 0;
             if (u != null) {
                 out.println("<h1>" + u.getNombre() + "</h1>");
                 idActual = u.getId();
@@ -27,6 +27,23 @@
     <div>
         <img>
         <input type="text" value="<%= u.getNombre()%>" readonly="readonly">
+        <input type="text" value="<%= u.getApellido()%>" readonly="readonly">
+        <input type="text" value="<%= u.getNombreUsuario()%>" readonly="readonly">
+        Publicaciones :
+        <%
+            int cantPublicaciones = new Data().getCantPublicaciones(u.getId());
+        %>
+        <input type="text" value="<%= cantPublicaciones %>" readonly="readonly">
+        Seguidores :
+         <%
+            int cantSeguidores = new Data().getCantSeguidores(u.getId());
+        %>
+        <input type="text" value="<%= cantSeguidores%>" readonly="readonly">
+        Seguidos :
+         <%
+            int cantSeguidos = new Data().getCantSeguidos(u.getId());
+        %>
+        <input type="text" value="<%= cantSeguidos%>" readonly="readonly">
     </div>
 
     <!Barra para buscar usuarios>
@@ -42,7 +59,7 @@
         <form action="crearPublicacion.do" method="POST">
             <textarea name="txtPublicacion"></textarea>
             <input type="hidden" value="<%= idActual%>" name="idActual">
-            
+
             <input type="submit" value="Publicar">
         </form>
     </div>
