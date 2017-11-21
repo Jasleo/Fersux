@@ -51,3 +51,5 @@ SELECT * FROM seguimiento;
 SELECT * FROM comentario;
 
 SELECT * FROM usuario WHERE nombre LIKE '%hila%' OR apellido LIKE '%hila%' AND id NOT LIKE '1'
+
+SELECT * FROM publicacion WHERE usuarioFK = 1 order by fechaPublicacion desc

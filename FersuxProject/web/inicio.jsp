@@ -4,6 +4,7 @@
     Author     : dhenriquez
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="model.bd.Publicacion"%>
 <%@page import="model.bd.Comentario"%>
 <%@page import="model.bd.Data"%>
@@ -56,39 +57,42 @@
         </form>
     </div>
 
-    <!Barra para buscar usuarios>
-    <div>
-        <form action="crearPublicacion.do" method="POST">
-            <textarea name="txtPublicacion"></textarea>
-            <input type="hidden" value="<%= idActual%>" name="idActual">
-
-            <input type="submit" value="Publicar">
-        </form>
-    </div>
-
-
     <div>
         <table class="table">
             <form action ="crearPublicacion.do" method="POST">
                 <tr>
                     <th><textarea rows="4" cols="50" name="txtPublicacion" required></textarea>
-                        <input type="hidden" value="<%=u.getId()%>" name="idUsuario">
+                        <input type="hidden" value="<%= u.getId()%>" name="idUsuario">
                         <input type="submit" value="Publicar">
                     </th>
                 </tr>
             </form>
+
             <%
                 Data d = new Data();
-                for (Publicacion p : d.getPublicacion(u.getId())) {
+                
+                for (Publicacion p : d.getTodasLasPublicacion(u.getId())) {
                     out.print("<tr>");
                     out.print("<td>");
-                    out.print(p.getTexto());
-                    out.print("<div class=''>Fecha Publicacion " + p.getFechaPublicacion()+ "</div>");
+                    
+                    out.print("<div>Fecha de Publicacion :" + p.getFechaPublicacion() + "</div>");
+                    out.print("<div><textarea rows='2' cols='50'>");
+                        out.print(p.getTexto());
+                    out.print("</textarea></div>");
+                    
                     out.print("</td>");
                     out.print("</tr>");
+                    out.print("</table>");
+                    
+                    
                 }
+                
+
             %>
+
+
         </table>
+
     </div>
 
 </body>

@@ -19,7 +19,7 @@ public class Data {
                 "localhost",
                 "fersux",//nombre BD
                 "root",
-                "12345"//Password
+                ""//Password
         );
 
     }
@@ -111,7 +111,7 @@ public class Data {
         int cantSeguidos = 0;
         Publicacion p;
 
-        rs = con.ejecutarSelect("SELECT COUNT(*) FROM seguimiento WHERE usuarioFK_Seguidor = " + idUsuario);
+        rs = con.ejecutarSelect("SELECT COUNT(*) FROM seguimiento WHERE usuarioFK_Seguido = " + idUsuario);
 
         if (rs.next()) {
             p = new Publicacion();
@@ -163,19 +163,21 @@ public class Data {
         con.ejecutar(query);
     }
 
-    public List<Publicacion> getPublicacion(int id) throws SQLException {
+    public List<Publicacion> getTodasLasPublicacion(int id) throws SQLException {
         List<Publicacion> lista = new ArrayList<>();
-        query = "SELECT * FROM publicacion WHERE usuarioFK = " + id + " order by fecha desc";
+        query = "SELECT * FROM publicacion WHERE usuarioFK = " + id + " order by fechaPublicacion desc";
 
         rs = con.ejecutarSelect(query);
-
-        Publicacion c = new Publicacion();
+        
+        Publicacion c; 
 
         while (rs.next()) {
+            c = new Publicacion();
             c.setId(rs.getInt(1));
             c.setTexto(rs.getString(2));
             c.setFechaPublicacion(rs.getTimestamp(3));
             c.setUsuarioFK(rs.getInt(4));
+            lista.add(c);
         }
         con.close();
         return lista;

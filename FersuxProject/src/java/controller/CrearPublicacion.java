@@ -28,7 +28,7 @@ public class CrearPublicacion extends HttpServlet {
                 Data d = new Data();
                 Publicacion p = new Publicacion();
                 
-                int idUsuario = Integer.parseInt(request.getParameter("idActual"));
+                int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
                 String publicacion = request.getParameter("txtPublicacion");
                 
                 p.setUsuarioFK(idUsuario);
