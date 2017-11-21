@@ -1,6 +1,5 @@
 package controller;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -27,11 +26,14 @@ public class CrearPublicacion extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             try {
                 Data d = new Data();
+                Publicacion p = new Publicacion();
+                
                 int idUsuario = Integer.parseInt(request.getParameter("idActual"));
                 String publicacion = request.getParameter("txtPublicacion");
-                Publicacion p = new Publicacion();
+                
                 p.setUsuarioFK(idUsuario);
                 p.setTexto(publicacion);
+                
                 d.publicar(p);
                 
                 response.sendRedirect("inicio.jsp");

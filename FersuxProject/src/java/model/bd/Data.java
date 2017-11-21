@@ -163,27 +163,26 @@ public class Data {
         con.ejecutar(query);
     }
 
-    public List<Comentario> getComentarios(int id) throws SQLException {
-        List<Comentario> lista = new ArrayList<>();
-        query = "SELECT * FROM comentario WHERE usuario_FK_Comenta = " + id + " order by fecha desc";
+    public List<Publicacion> getPublicacion(int id) throws SQLException {
+        List<Publicacion> lista = new ArrayList<>();
+        query = "SELECT * FROM publicacion WHERE usuarioFK = " + id + " order by fecha desc";
 
         rs = con.ejecutarSelect(query);
 
-        Comentario c = new Comentario();
+        Publicacion c = new Publicacion();
 
         while (rs.next()) {
             c.setId(rs.getInt(1));
-            c.setComentario(rs.getString(2));
-            c.setFechaComentario(rs.getTimestamp(3));
-            c.setUsuario_FK_Comenta(rs.getInt(4));
-            c.setPublicacion_FK(rs.getInt(5));
+            c.setTexto(rs.getString(2));
+            c.setFechaPublicacion(rs.getTimestamp(3));
+            c.setUsuarioFK(rs.getInt(4));
         }
         con.close();
         return lista;
     }
     
     public void publicar(Publicacion p) throws SQLException{
-        query ="INSERT INTO publicacion VALUES(null,'"+p.getUsuarioFK()+"','"+p.getTexto()+"',NOW());";
+        query ="INSERT INTO publicacion VALUES(null,'"+p.getTexto()+"',NOW(),'"+p.getUsuarioFK()+"');";
         con.ejecutar(query);
     }
     

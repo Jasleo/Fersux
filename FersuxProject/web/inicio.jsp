@@ -4,6 +4,7 @@
     Author     : dhenriquez
 --%>
 
+<%@page import="model.bd.Publicacion"%>
 <%@page import="model.bd.Comentario"%>
 <%@page import="model.bd.Data"%>
 <%@page import="model.bd.Usuario"%>
@@ -78,11 +79,11 @@
             </form>
             <%
                 Data d = new Data();
-                for (Comentario p : d.getComentarios(u.getId())) {
+                for (Publicacion p : d.getPublicacion(u.getId())) {
                     out.print("<tr>");
                     out.print("<td>");
-                    out.print(p.getComentario());
-                    out.print("<div class=''>Fecha Comentario " + p.getFechaComentario()+ "</div>");
+                    out.print(p.getTexto());
+                    out.print("<div class=''>Fecha Publicacion " + p.getFechaPublicacion()+ "</div>");
                     out.print("</td>");
                     out.print("</tr>");
                 }
