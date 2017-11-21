@@ -94,7 +94,7 @@ public class Data {
         int cantSeguidores = 0;
         Seguimiento s;
 
-        rs = con.ejecutarSelect("SELECT COUNT(*) FROM seguimiento WHERE usuarioFK_Seguido = " + idUsuario);
+        rs = con.ejecutarSelect("SELECT COUNT(*) FROM seguimiento WHERE usuarioFK_Actual = " + idUsuario);
 
         if (rs.next()) {
             s = new Seguimiento();
