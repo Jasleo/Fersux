@@ -181,5 +181,10 @@ public class Data {
         con.close();
         return lista;
     }
-
+    
+    public void publicar(Publicacion p) throws SQLException{
+        query ="INSERT INTO publicacion VALUES(null,'"+p.getUsuarioFK()+"','"+p.getTexto()+"',NOW());";
+        con.ejecutar(query);
+    }
+    
 }

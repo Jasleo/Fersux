@@ -82,7 +82,7 @@
                     out.print("<tr>");
                     out.print("<td>");
                     out.print(p.getComentario());
-                    out.print("<div class=''>Fecha Publicación: " + p.getFechaComentario()+ "</div>");
+                    out.print("<div class=''>Fecha Comentario " + p.getFechaComentario()+ "</div>");
                     out.print("</td>");
                     out.print("</tr>");
                 }

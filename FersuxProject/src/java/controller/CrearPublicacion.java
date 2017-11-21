@@ -1,12 +1,18 @@
 package controller;
 
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bd.Data;
+import model.bd.Publicacion;
 
 /**
  *
@@ -19,12 +25,22 @@ public class CrearPublicacion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            try {
+                Data d = new Data();
+                int idUsuario = Integer.parseInt(request.getParameter("idActual"));
+                String publicacion = request.getParameter("txtPublicacion");
+                Publicacion p = new Publicacion();
+                p.setUsuarioFK(idUsuario);
+                p.setTexto(publicacion);
+                d.publicar(p);
+                
+                response.sendRedirect("inicio.jsp");
+            } catch (SQLException ex) {
+                Logger.getLogger(CrearPublicacion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CrearPublicacion.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-            int idUsuario = Integer.parseInt(request.getParameter("idActual"));
-            String texto = request.getParameter("txtPublicacion");
-            
-            out.print("<h1>"+texto+"</h1>");
-            out.print("<h1>"+idUsuario+"</h1>");
         }
     }
 
